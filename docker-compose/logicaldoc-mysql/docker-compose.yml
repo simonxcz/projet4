@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+
+  d_db_mysql:
+    image: p4mysql
+    # command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    # env_file:
+      # - ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      # ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: logicaldoc
+      # ${DB_NAME}
+      MYSQL_USER: logicaldoc
+      # {DB_USER}
+      MYSQL_PASSWORD: password
+      # ${DB_PASSWORD}
+    command: >
+            sleep 30;
+            && mysql -u root -ppassword < init_prive.sql
+            
+  d_logicaldoc:
+    image: mylogcialdoc
+    links:
+      - d_db_mysql:hostmysql
