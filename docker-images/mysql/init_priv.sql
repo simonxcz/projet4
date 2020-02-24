@@ -1,0 +1,1 @@
+GRANT ALL PRIVILEGES ON logicaldoc.* TO logicaldoc@'%' identified by 'password';
